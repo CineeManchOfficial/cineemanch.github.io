@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cineemanch | Front Page</title>
+    <title>Cineemanch | Lights, Camera, Cinema!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
@@ -17,10 +17,28 @@
             background-color: var(--bg-deep);
             color: white;
             font-family: 'Inter', sans-serif;
+            margin: 0;
             overflow-x: hidden;
         }
 
-        /* Column 1: Left Nav */
+        /* 1. Header & Banner */
+        .banner-wrapper {
+            width: 100%;
+            background-color: var(--bg-deep);
+            border-bottom: 2px solid var(--accent-red);
+            overflow: hidden;
+        }
+
+        .hero-banner {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+
+        /* 2. Column Layout */
         .side-nav {
             background-color: var(--sidebar-bg);
             height: 100vh;
@@ -28,6 +46,7 @@
             top: 0;
             border-right: 1px solid #2d2d2d;
             padding: 2rem;
+            transition: all 0.3s;
         }
 
         .nav-link {
@@ -35,7 +54,7 @@
             font-weight: 600;
             padding: 0.8rem 1rem;
             border-radius: 8px;
-            transition: all 0.3s;
+            transition: 0.3s;
             margin-bottom: 0.5rem;
             display: block;
             text-decoration: none;
@@ -46,19 +65,16 @@
             color: var(--accent-red);
         }
 
-        /* Column 2: Center Spotlight */
-        .main-content {
-            padding: 2rem;
-        }
+        .main-content { padding: 2.5rem; }
 
         .video-spotlight {
             background: #1a1d20;
             border-radius: 16px;
             padding: 1.5rem;
             border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Column 3: Right Chronological Feed */
         .right-feed {
             height: 100vh;
             position: sticky;
@@ -71,109 +87,119 @@
         .feed-item {
             background: #1a1d20;
             border-radius: 10px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             border-left: 4px solid var(--accent-red);
-            transition: transform 0.2s;
+            transition: 0.2s;
         }
 
-        .feed-item:hover {
-            transform: scale(1.02);
+        .feed-item:hover { transform: translateX(5px); }
+
+        /* 3. Scroll Reveal Elements */
+        #scroll-logo {
+            max-height: 40px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease-out;
         }
 
-        .brand-logo {
+        #scroll-logo.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brand-title {
             font-weight: 800;
-            font-size: 1.8rem;
             color: var(--accent-red);
-            margin-bottom: 3rem;
+            font-size: 1.4rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         @media (max-width: 992px) {
-            .side-nav, .right-feed { height: auto; position: relative; border: none; }
+            .side-nav, .right-feed { height: auto; position: relative; border: none; padding: 1.5rem; }
+            .hero-banner { max-height: 200px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row">
-        
-        <nav class="col-lg-2 side-nav d-none d-lg-block">
-            <div class="brand-logo text-center">Cineemanch</div>
-            <a href="#" class="nav-link active">Home</a>
-            <a href="#video-reviews" class="nav-link">Movie Reviews</a>
-            <a href="#blog" class="nav-link">Written Blog</a>
-            <hr class="text-secondary">
-            <a href="https://youtube.com/@cineemanch" class="nav-link">YouTube</a>
-            <a href="#" class="nav-link">Instagram</a>
-        </nav>
-
-        <main class="col-lg-7 main-content">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="fw-bold">Latest Release</h2>
-                <span class="badge bg-danger">LIVE NOW</span>
-            </div>
-
-            <div class="video-spotlight mb-5">
-                <div class="ratio ratio-16x9 mb-4">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                </div>
-                <h1 class="fw-bold h2 mb-3">Is This the Best Film of 2026? | Full Breakdown</h1>
-                <p class="text-secondary">We explore the nuances of the cinematography and the shocking twist at the end. Make sure to watch until the final minute for our Cineemanch Verdict.</p>
-                <div class="mt-4">
-                    <button class="btn btn-danger me-2">Watch on YouTube</button>
-                    <button class="btn btn-outline-light">Read Full Blog Review</button>
-                </div>
-            </div>
-
-            <section id="movie-reviews" class="mt-5">
-                <h3 class="fw-bold mb-4">Trending Analysis</h3>
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="p-3 bg-dark border rounded">
-                            <h5 class="fw-bold">War Machine 2026</h5>
-                            <p class="small text-secondary">A masterclass in tension...</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 bg-dark border rounded">
-                            <h5 class="fw-bold">Sci-Fi Revival</h5>
-                            <p class="small text-secondary">Why old tech is back...</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <aside class="col-lg-3 right-feed">
-            <h4 class="fw-bold mb-4">Feed History</h4>
-            
-            <div class="feed-item p-3">
-                <div class="text-danger small fw-bold mb-1">YESTERDAY</div>
-                <h6 class="fw-bold mb-1">Interstellar 2 Theory</h6>
-                <p class="small text-secondary mb-0">Breaking down the physics...</p>
-            </div>
-
-            <div class="feed-item p-3">
-                <div class="text-danger small fw-bold mb-1">2 DAYS AGO</div>
-                <h6 class="fw-bold mb-1">The Oscar Snubs</h6>
-                <p class="small text-secondary mb-0">Who got left out this year?</p>
-            </div>
-
-            <div class="feed-item p-3">
-                <div class="text-danger small fw-bold mb-1">4 DAYS AGO</div>
-                <h6 class="fw-bold mb-1">Indie Gem Review</h6>
-                <p class="small text-secondary mb-0">Silent Echo is a must-watch.</p>
-            </div>
-
-            <div class="text-center mt-4">
-                <a href="#" class="text-danger text-decoration-none small fw-bold">LOAD MORE →</a>
-            </div>
-        </aside>
-
+    <div class="banner-wrapper">
+        <img src="Modern Gaming Cover YouTube Channel Art-2.jpg" alt="Cineemanch Banner" class="hero-banner">
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container-fluid">
+        <div class="row">
+            
+            <nav class="col-lg-2 side-nav d-none d-lg-block">
+                <div class="text-center mb-5">
+                    <img src="Modern Gaming Cover YouTube Channel Art-2.jpg" id="scroll-logo" alt="Logo">
+                    <div class="brand-title mt-2">Cineemanch</div>
+                </div>
+                
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#video-reviews" class="nav-link">Movie Reviews</a>
+                <a href="#blog" class="nav-link">Written Blog</a>
+                <hr class="text-secondary">
+                <a href="https://youtube.com/@cineemanch" target="_blank" class="nav-link">YouTube Channel</a>
+            </nav>
+
+            <main class="col-lg-7 main-content">
+                <h2 class="fw-bold mb-4">Featured Review</h2>
+                <div class="video-spotlight">
+                    <div class="ratio ratio-16x9 mb-4">
+                        <iframe src="https://www.youtube.com/embed/FrqmF_AEU5s" title="The Batman Review" allowfullscreen></iframe>
+                    </div>
+                    <h1 class="fw-bold h2 mb-3">The Batman: A Visual Masterclass</h1>
+                    <p class="text-secondary lead">Does Matt Reeves' vision hold up under the Cineemanch lens? We break down the lighting, the score, and the soul of Gotham.</p>
+                </div>
+                
+                <section id="blog" class="mt-5 pt-5">
+                    <h3 class="fw-bold mb-4">Latest Blog Posts</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-dark border rounded">
+                                <span class="badge bg-danger mb-2">9.5/10</span>
+                                <h5 class="fw-bold">The Technical Brilliance of Batman</h5>
+                                <p class="small text-secondary">A written deep-dive into the cinematography...</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <aside class="col-lg-3 right-feed">
+                <h4 class="fw-bold mb-4">Recent Uploads</h4>
+                
+                <div class="feed-item p-3">
+                    <div class="text-danger small fw-bold">NEW</div>
+                    <h6 class="fw-bold">The Batman 2026 Analysis</h6>
+                    <p class="small text-secondary mb-0">Visual breakdown of the year's biggest hit.</p>
+                </div>
+
+                <div class="feed-item p-3">
+                    <div class="text-secondary small fw-bold">PREVIOUS</div>
+                    <h6 class="fw-bold">Why Sound Matters</h6>
+                    <p class="small text-secondary mb-0">Exploring Dolby Atmos in modern cinema.</p>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script>
+        window.onscroll = function() {
+            const logo = document.getElementById('scroll-logo');
+            const banner = document.querySelector('.banner-wrapper');
+            
+            // If user scrolls past 300px (roughly the banner height)
+            if (window.scrollY > 300) {
+                logo.classList.add('visible');
+            } else {
+                logo.classList.remove('visible');
+            }
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
