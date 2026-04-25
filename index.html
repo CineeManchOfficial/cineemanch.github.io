@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CineeManch</title>
 
 <style>
@@ -13,7 +12,7 @@ body {
     color: white;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 .navbar {
     position: absolute;
     top: 0;
@@ -37,12 +36,9 @@ body {
     margin: 0 12px;
     font-size: 14px;
 }
-.nav-links a:hover,
-.nav-links .active { color: red; }
+.nav-links a:hover { color: red; }
 
-.icons span { margin-left: 15px; }
-
-/* ================= HERO ================= */
+/* HERO */
 .hero {
     position: relative;
     height: 100vh;
@@ -62,12 +58,11 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 600px;
 }
 
 .hero-content h1 { font-size: 60px; margin: 0; }
 .hero-content span { color: red; }
-.hero-content p { margin: 10px 0 20px; color: #ccc; }
+.hero-content p { color: #ccc; }
 
 .buttons a {
     padding: 12px 20px;
@@ -79,14 +74,14 @@ body {
 .btn-red { background: red; color: white; }
 .btn-outline { border: 1px solid white; color: white; }
 
-/* ================= DIVIDER ================= */
+/* DIVIDER */
 .divider {
     height: 2px;
     background: linear-gradient(to right, transparent, red, transparent);
     margin: 40px 0;
 }
 
-/* ================= LATEST REVIEWS ================= */
+/* LATEST REVIEWS */
 .latest {
     padding: 20px 40px 60px;
 }
@@ -94,15 +89,16 @@ body {
 .latest h2 {
     border-left: 4px solid red;
     padding-left: 10px;
-    margin-bottom: 20px;
 }
 
-.-grid {
+/* GRID FIXED */
+.video-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
+/* VIDEO CARD */
 .video-card {
     background: #111;
     border-radius: 10px;
@@ -114,8 +110,11 @@ body {
     transform: scale(1.05);
 }
 
+.video-card iframe,
 .video-card img {
     width: 100%;
+    height: 180px;
+    border: none;
 }
 
 .video-card .info {
@@ -123,13 +122,8 @@ body {
 }
 
 .video-card h3 {
+    font-size: 14px;
     margin: 0;
-    font-size: 16px;
-}
-
-.video-card p {
-    font-size: 13px;
-    color: #aaa;
 }
 
 /* MOBILE */
@@ -137,7 +131,10 @@ body {
     .nav-links { display: none; }
     .hero-content h1 { font-size: 36px; }
     .hero { padding-left: 20px; }
-    .video-grid { grid-template-columns: 1fr; }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
@@ -152,18 +149,11 @@ body {
     </div>
 
     <div class="nav-links">
-        <a href="#" class="active">Home</a>
+        <a href="#">Home</a>
         <a href="#">Reviews</a>
-        <a href="#">Trailer Breakdown</a>
+        <a href="#">Trailer</a>
         <a href="#">Box Office</a>
         <a href="#">News</a>
-        <a href="#">About</a>
-    </div>
-
-    <div class="icons">
-        <span>▶</span>
-        <span>◎</span>
-        <span>🔍</span>
     </div>
 </div>
 
@@ -193,27 +183,34 @@ body {
 
         <!-- VIDEO 1 -->
         <div class="video-card">
-    <iframe 
-        width="100%" 
-        height="200"
-        src="https://www.youtube.com/embed/GB8ICqVQQMw"
-        frameborder="0"
-        allowfullscreen>
-    </iframe>
+            <iframe src="https://www.youtube.com/embed/GB8ICqVQQMw" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Daadi Ki Shaadi Trailer Review</h3>
+            </div>
+        </div>
 
-    <div class="info">
-        <h3>Bollywood का सबसे अजीब Trailer! 💀 | 🎬 Daadi Ki Shaadi Trailer Review | Honest Reaction & Roast/h3>
-    </div>
-</div>
-        
         <!-- VIDEO 2 -->
         <div class="video-card">
-            <a href="https://www.youtube.com/watch?v=FrqmF_AEU5s" target="_blank">
-                <img src="https://img.youtube.com/vi/FrqmF_AEU5s/maxresdefault.jpg">
-                <div class="info">
-                    <h3>Raja Shivaji Review 😏 | Trailer अच्छा… या सिर्फ Editing का खेल?</h3>
-                </div>
-            </a>
+            <iframe src="https://www.youtube.com/embed/FrqmF_AEU5s" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Raja Shivaji Review</h3>
+            </div>
+        </div>
+
+        <!-- VIDEO 3 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Your Next Video</h3>
+            </div>
+        </div>
+
+        <!-- VIDEO 4 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Your Next Video</h3>
+            </div>
         </div>
 
     </div>
