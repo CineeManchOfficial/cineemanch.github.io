@@ -5,43 +5,85 @@
 <title>Reviews - CineeManch</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 /* ================= BODY ================= */
-body {
+html, body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
     background: #000;
     color: white;
+    overflow-x: hidden;
 }
 
-/* ================= NAVBAR ================= */
+/* ================= NAVBAR (NEW CINEMATIC STYLE) ================= */
 .navbar {
     position: sticky;
     top: 0;
     width: 100%;
-    padding: 15px 40px;
+    padding: 14px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(0,0,0,0.9);
-    backdrop-filter: blur(6px);
+    background: rgba(10,10,10,0.6);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     z-index: 1000;
 }
 
-.logo { font-size: 24px; font-weight: bold; }
-.logo span { color: red; }
-.logo small { display: block; font-size: 12px; color: #ccc; }
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 12px;
-    font-size: 14px;
+.logo {
+    font-size: 22px;
+    font-weight: 700;
 }
 
-.nav-links a:hover,
+.logo span {
+    color: #ff2d2d;
+}
+
+.logo small {
+    display: block;
+    font-size: 11px;
+    color: #aaa;
+}
+
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 5px 12px;
+    font-size: 14px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #ff2d2d;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.nav-links a:hover::after,
+.nav-links .active::after {
+    width: 100%;
+}
+
 .nav-links .active {
-    color: red;
+    color: #fff;
 }
 
 /* ================= BANNER ================= */
@@ -51,12 +93,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
 }
 
 .banner h1 {
-    font-size: 50px;
-    background: rgba(0,0,0,0.6);
+    position: relative;
+    font-size: 52px;
     padding: 10px 20px;
+    border: 2px solid rgba(255,45,45,0.4);
+    background: rgba(0,0,0,0.4);
 }
 
 /* ================= REVIEWS ================= */
@@ -80,7 +133,7 @@ body {
 .video-wrapper iframe {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     border: none;
 }
 
@@ -91,12 +144,12 @@ body {
 
 .review-text h2 {
     margin-top: 0;
-    color: red;
+    color: #ff2d2d;
 }
 
 .review-text p {
     color: #ccc;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 /* ================= MOBILE ================= */
@@ -113,8 +166,11 @@ body {
     .banner h1 {
         font-size: 32px;
     }
-}
 
+    .nav-links {
+        display: none;
+    }
+}
 </style>
 </head>
 
@@ -144,12 +200,10 @@ body {
 <!-- ================= REVIEWS ================= -->
 <div class="reviews">
 
-    <!-- REVIEW 1 -->
     <div class="review-item">
         <div class="video-wrapper">
             <iframe src="https://www.youtube.com/embed/GB8ICqVQQMw" allowfullscreen></iframe>
         </div>
-
         <div class="review-text">
             <h2>Daadi Ki Shaadi Trailer Review</h2>
             <p>
@@ -160,33 +214,28 @@ body {
         </div>
     </div>
 
-    <!-- REVIEW 2 -->
     <div class="review-item">
         <div class="video-wrapper">
             <iframe src="https://www.youtube.com/embed/FrqmF_AEU5s" allowfullscreen></iframe>
         </div>
-
         <div class="review-text">
             <h2>Raja Shivaji Review</h2>
             <p>
                 A detailed analysis of the trailer, performances, and cinematic
-                scale. We explore whether the storytelling matches the grand
-                visuals or falls short.
+                scale. We explore whether the storytelling matches the grand visuals.
             </p>
         </div>
     </div>
 
-    <!-- REVIEW 3 -->
     <div class="review-item">
         <div class="video-wrapper">
             <iframe src="https://www.youtube.com/embed/AGQSZcQypdI" allowfullscreen></iframe>
         </div>
-
         <div class="review-text">
             <h2>Kattalan Trailer Review</h2>
             <p>
-                Breaking down the action, background score, and overall vibe of
-                the trailer. Is it worth the hype? Watch our honest reaction.
+                Breaking down action, visuals, and background score to see if it
+                truly lives up to expectations.
             </p>
         </div>
     </div>
