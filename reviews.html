@@ -78,7 +78,7 @@ html, body {
     letter-spacing: 4px;
 }
 
-/* ================= CENTER COLUMN ================= */
+/* ================= CONTENT ================= */
 .content-width {
     width: 100%;
     max-width: 900px;
@@ -114,10 +114,6 @@ html, body {
 }
 
 /* ================= TEXT ================= */
-.review-text {
-    text-align: left;
-}
-
 .review-text h2 {
     color: #ff2d2d;
     font-size: 26px;
@@ -131,30 +127,32 @@ html, body {
     font-size: 16px;
 }
 
-/* ================= DESKTOP LAYOUT ================= */
+/* ================= DESKTOP SYMMETRY FIX ================= */
 @media (min-width: 1024px) {
 
     .review-item {
         flex-direction: row;
-        align-items: stretch;   /* 🔥 IMPORTANT FIX */
+        align-items: stretch;
         gap: 40px;
         padding: 35px;
     }
 
+    /* LEFT: VIDEO (BIGGER FOCUS) */
     .video-wrapper {
-        flex: 1.8;             /* 🔥 BIGGER VIDEO */
-        min-width: 58%;
+        flex: 1.8;
+        min-width: 55%;
     }
 
     .video-wrapper iframe {
         height: 100%;
     }
 
+    /* RIGHT: TEXT (CENTERED VERTICALLY FOR BALANCE) */
     .review-text {
-        flex: 1;
+        flex: 1.2;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; /* 🔥 FIX ALIGNMENT */
+        justify-content: center;
     }
 
     .review-text h2 {
@@ -164,31 +162,6 @@ html, body {
     .review-text p {
         font-size: 17px;
         line-height: 1.8;
-    }
-}
-
-    .review-item {
-        flex-direction: row;
-        align-items: center;
-        gap: 35px;
-        padding: 35px;
-    }
-
-    .video-wrapper {
-        flex: 1.6;      /* 🔥 BIGGER VIDEO */
-        min-width: 55%;
-    }
-
-    .review-text {
-        flex: 1;
-    }
-
-    .review-text h2 {
-        font-size: 30px;
-    }
-
-    .review-text p {
-        font-size: 17px;
     }
 }
 
@@ -221,6 +194,7 @@ html, body {
         {% for post in site.posts %}
         <article class="review-item">
 
+            <!-- VIDEO LEFT -->
             <div class="video-wrapper">
                 {% if post.video %}
                 <iframe src="{{ post.video }}" allowfullscreen></iframe>
@@ -231,10 +205,9 @@ html, body {
                 {% endif %}
             </div>
 
+            <!-- TEXT RIGHT -->
             <div class="review-text">
                 <h2>{{ post.title }}</h2>
-
-                <!-- FULL DESCRIPTION (NO TRUNCATION) -->
                 <p>{{ post.description | default: post.excerpt | strip_html }}</p>
             </div>
 
