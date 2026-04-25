@@ -17,21 +17,22 @@ html, body {
     overflow-x: hidden;
 }
 
-/* ================= NAVBAR (NEW CINEMATIC STYLE) ================= */
+/* ================= NAVBAR (FIXED + CINEMATIC) ================= */
 .navbar {
     position: sticky;
     top: 0;
     width: 100%;
-    padding: 14px 20px;
+    padding: 14px 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10,10,10,0.6);
+    background: rgba(10,10,10,0.65);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
     z-index: 1000;
 }
 
+/* LOGO */
 .logo {
     font-size: 22px;
     font-weight: 700;
@@ -47,16 +48,24 @@ html, body {
     color: #aaa;
 }
 
-/* NAV LINKS */
+/* NAV LINKS FIX (NO HIDDEN ITEMS) */
 .nav-links {
     display: flex;
-    flex-wrap: wrap;
+    gap: 18px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-links a {
+    flex-shrink: 0;
     color: #ddd;
     text-decoration: none;
-    margin: 5px 12px;
     font-size: 14px;
     position: relative;
     transition: 0.3s;
@@ -101,13 +110,13 @@ html, body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.65);
 }
 
 .banner h1 {
     position: relative;
     font-size: 52px;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: 2px solid rgba(255,45,45,0.4);
     background: rgba(0,0,0,0.4);
 }
@@ -166,10 +175,6 @@ html, body {
     .banner h1 {
         font-size: 32px;
     }
-
-    .nav-links {
-        display: none;
-    }
 }
 </style>
 </head>
@@ -188,7 +193,7 @@ html, body {
         <a href="reviews.html" class="active">Reviews</a>
         <a href="#">Recommended</a>
         <a href="#">Box Office</a>
-        <a href="#">About</a>
+        <a href="#">About Us</a>
     </div>
 </div>
 
