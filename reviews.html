@@ -10,7 +10,8 @@ layout: default
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         
-        /* ================= GLOBAL ================= */
+        /* ================= RESET & GLOBAL ================= */
+        * { box-sizing: border-box; }
         html, body {
             margin: 0;
             padding: 0;
@@ -21,88 +22,95 @@ layout: default
             width: 100%;
         }
 
-        /* Use this for content you WANT centered, but remove it from the Banner/Nav */
-        .content-width {
-            max-width: 1200px;
+        /* The container that stretches but keeps margins on big screens */
+        .wrapper {
+            width: 100%;
+            padding: 0 5%; /* 5% breathing room on both sides */
             margin: 0 auto;
-            padding: 0 40px;
         }
 
-        /* ================= NAVBAR (Full Width) ================= */
+        /* ================= NAVBAR ================= */
         .navbar {
             position: sticky;
             top: 0;
             width: 100%;
-            padding: 15px 50px; /* Wider padding for laptop screens */
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10,10,10,0.9);
+            background: rgba(10,10,10,0.95);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
             z-index: 1000;
-            box-sizing: border-box;
         }
-        .logo { font-size: 24px; font-weight: 700; }
+        .logo { font-size: 22px; font-weight: 700; line-height: 1.1; }
         .logo span { color: #ff2d2d; }
-        .logo small { display: block; font-size: 12px; color: #aaa; letter-spacing: 1px; }
+        .logo small { display: block; font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
 
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: #ccc; text-decoration: none; font-size: 15px; font-weight: 500; position: relative; }
-        .nav-links .active { color: #fff; }
-        .nav-links .active::after {
-            content: ""; position: absolute; left: 0; bottom: -5px;
-            width: 100%; height: 2px; background: #ff2d2d;
-        }
+        .nav-links { display: none; gap: 25px; } /* Hidden on mobile by default */
+        .nav-links a { color: #ccc; text-decoration: none; font-size: 14px; font-weight: 500; }
+        .nav-links .active { color: #fff; border-bottom: 2px solid #ff2d2d; padding-bottom: 4px; }
 
-        /* ================= BANNER (Full Width) ================= */
+        /* ================= BANNER ================= */
         .banner {
             width: 100%;
-            height: 50vh; /* Slightly taller for laptop */
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url("Banner 2.png") center/cover no-repeat;
+            height: 35vh; /* Shorter for mobile */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url("Banner 2.png") center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 2px solid #ff2d2d;
+            text-align: center;
         }
         .banner h1 {
-            font-size: clamp(40px, 6vw, 70px); /* Responsive font size */
+            font-size: clamp(32px, 8vw, 80px);
             text-transform: uppercase;
             letter-spacing: 4px;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
             margin: 0;
         }
 
-        /* ================= REVIEWS SECTION ================= */
-        .reviews-section { padding: 80px 0; }
+        /* ================= REVIEW ITEMS (Mobile First) ================= */
+        .reviews-container { padding: 40px 0; }
         
         .review-item {
-            display: flex; gap: 40px; margin-bottom: 60px;
-            align-items: flex-start; background: #0a0a0a;
-            padding: 30px; border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.4s ease;
-        }
-        .review-item:hover {
-            transform: scale(1.01);
-            border-color: rgba(255,45,45,0.5);
-            box-shadow: 0 20px 40px rgba(255,45,45,0.05);
+            display: flex;
+            flex-direction: column; /* Stacked on mobile */
+            gap: 20px;
+            margin-bottom: 40px;
+            background: #0f0f0f;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
         
-        .video-wrapper { flex: 0 0 50%; aspect-ratio: 16 / 9; }
-        .video-wrapper iframe {
-            width: 100%; height: 100%; border-radius: 12px;
-            border: none; background: #111;
+        .video-wrapper { 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            border-radius: 10px;
+            overflow: hidden;
+            background: #1a1a1a;
         }
+        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
         
-        .review-text { flex: 1; }
-        .review-text h2 { margin: 0 0 20px 0; color: #ff2d2d; font-size: 28px; font-weight: 700; }
-        .review-text p { color: #aaa; line-height: 1.8; font-size: 17px; margin: 0; }
+        .review-text h2 { color: #ff2d2d; font-size: 22px; margin: 0 0 10px 0; }
+        .review-text p { color: #bbb; line-height: 1.6; font-size: 15px; margin: 0; }
 
-        @media (max-width: 992px) {
-            .review-item { flex-direction: column; }
-            .video-wrapper { width: 100%; flex: none; }
-            .navbar { padding: 15px 20px; }
+        /* ================= LAPTOP/DESKTOP UPGRADES ================= */
+        @media (min-width: 1024px) {
+            .nav-links { display: flex; } /* Show menu on laptop */
+            
+            .banner { height: 50vh; } /* Taller banner on laptop */
+            
+            .review-item {
+                flex-direction: row; /* Side-by-side on laptop */
+                padding: 40px;
+                gap: 50px;
+                align-items: center;
+            }
+            
+            .video-wrapper { flex: 0 0 55%; } /* Video takes 55% of width */
+            
+            .review-text h2 { font-size: 32px; }
+            .review-text p { font-size: 18px; }
         }
     </style>
 </head>
@@ -117,36 +125,30 @@ layout: default
             <a href="#">Box Office</a>
             <a href="#">About</a>
         </div>
+        <div style="color:#ff2d2d; font-size:24px; cursor:pointer;" class="mobile-only">☰</div>
     </nav>
 
     <header class="banner">
         <h1>Movie Reviews</h1>
     </header>
 
-    <main class="reviews-section">
-        <div class="content-width">
+    <main class="reviews-container">
+        <div class="wrapper">
             {% for post in site.posts %}
             <article class="review-item">
                 <div class="video-wrapper">
                     {% if post.video %}
-                        <iframe 
-                            src="{{ post.video }}" 
-                            title="{{ post.title }}"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
+                        <iframe src="{{ post.video }}" allowfullscreen loading="lazy"></iframe>
                     {% else %}
-                        <div style="background:#1a1a1a; height:100%; display:flex; align-items:center; justify-content:center; border-radius:12px; color:#444;">
-                            [ No Video in Markdown ]
+                        <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#444;">
+                            [ No Video ]
                         </div>
                     {% endif %}
                 </div>
                 
                 <div class="review-text">
-                    <h2>{{ post.title | default: "Coming Soon" }}</h2>
-                    <p>
-                        {{ post.description | default: post.excerpt | strip_html | truncate: 250 }}
-                    </p>
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.description | truncate: 280 }}</p>
                 </div>
             </article>
             {% endfor %}
