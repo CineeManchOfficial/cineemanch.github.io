@@ -13,12 +13,14 @@ layout: null
 
 /* RESET */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-body {
+html, body {
+    width: 100%;
+    min-height: 100vh;
     font-family: 'Inter', sans-serif;
     background: #000;
     color: #fff;
@@ -30,13 +32,14 @@ body {
     position: sticky;
     top: 0;
     width: 100%;
-    padding: 15px 4%;
-    display: flex;
-    justify-content: space-between;
+    padding: 14px 5%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 1000;
 }
 
 .logo {
@@ -44,109 +47,137 @@ body {
     font-weight: 700;
 }
 .logo span { color: #ff2d2d; }
-.logo small {
-    font-size: 11px;
-    color: #aaa;
-    display: block;
-}
+.logo small { display: block; font-size: 11px; color: #aaa; }
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 22px;
+    justify-self: center;
 }
 
 .nav-links a {
-    color: #ccc;
+    color: #ddd;
     text-decoration: none;
     font-size: 14px;
 }
 
 /* ================= HERO ================= */
 .hero {
-    height: 55vh;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
+    position: relative;
+    height: 72vh;
+    min-height: 420px;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                 url("Banner 1.png") center/cover no-repeat;
     display: flex;
     align-items: center;
-    padding: 0 5%;
+    padding: 0 6%;
 }
 
-.hero h1 {
-    font-size: 50px;
+.hero-content {
+    max-width: 700px;
 }
 
-.hero span {
-    color: #ff2d2d;
+.hero-content h1 {
+    font-size: clamp(42px, 6vw, 70px);
+    margin-bottom: 12px;
+}
+
+.hero-content span { color: #ff2d2d; }
+
+.hero-content p {
+    color: #bbb;
+    font-size: 1.2rem;
+    margin-bottom: 28px;
+}
+
+/* buttons */
+.buttons a {
+    padding: 12px 24px;
+    margin-right: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ================= DIVIDER ================= */
+.divider {
+    height: 1px;
+    margin: 45px 6%;
+    background: linear-gradient(to right, transparent, #ff2d2d, transparent);
 }
 
 /* ================= SECTION ================= */
-.section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 50px 20px;
+.latest {
+    padding: 30px 6% 70px;
 }
 
-.section h2 {
-    margin-bottom: 20px;
+.latest h2 {
     border-left: 4px solid #ff2d2d;
-    padding-left: 10px;
+    padding-left: 12px;
+    margin-bottom: 35px;
+    font-size: 22px;
 }
 
-/* ================= 4 LATEST GRID ================= */
-.latest-grid {
+/* ================= GRID (IMPROVED SPACING) ================= */
+.video-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    gap: 26px;
 }
 
-/* CARD */
-.card {
-    background: #0a0a0a;
+/* CARD (BIGGER + MORE PREMIUM) */
+.video-card {
+    background: #0b0b0b;
     border-radius: 14px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.06);
     transition: 0.3s;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    border-color: #ff2d2d55;
+.video-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255,45,45,0.4);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.6);
 }
 
-/* VIDEO */
-.video {
+/* BIGGER VIDEO (IMPORTANT CHANGE) */
+.video-card iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
-}
-
-.video iframe {
-    width: 100%;
-    height: 100%;
+    height: 180px; /* 🔥 increased visual weight */
     border: none;
 }
 
-/* TITLE */
-.card h3 {
-    padding: 10px;
-    font-size: 14px;
-    color: #ddd;
+/* INFO */
+.video-card .info {
+    padding: 14px;
+}
+
+.video-card h3 {
+    font-size: 15px;
+    color: #fff;
     line-height: 1.4;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE ================= */
 @media (max-width: 1024px) {
-    .latest-grid {
+    .video-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 600px) {
-    .latest-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 768px) {
+
+    .nav-links {
+        display: none;
     }
 
-    .hero h1 {
-        font-size: 34px;
+    .hero {
+        height: 55vh;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -157,47 +188,59 @@ body {
 
 <!-- NAV -->
 <nav class="navbar">
-    <div class="logo">Cinee<span>Manch</span><small>सिनेमंच</small></div>
+    <div class="logo">
+        Cinee<span>Manch</span>
+        <small>सिनेमंच</small>
+    </div>
+
     <div class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="reviews.html">Reviews</a>
         <a href="#">About</a>
     </div>
+
+    <div></div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
-    <h1>Cinee<span>Manch</span></h1>
+    <div class="hero-content">
+        <h1>Cinee<span>Manch</span></h1>
+        <p>सिनेमा की हर बात, हमारे साथ</p>
+
+        <div class="buttons">
+            <a href="reviews.html" class="btn-red" style="background:#ff2d2d;color:white;">▶ Watch Latest</a>
+            <a href="#" class="btn-outline" style="border:1px solid white;color:white;">Must Watch</a>
+        </div>
+    </div>
 </header>
 
-<!-- LATEST VIDEOS -->
-<section class="section">
+<div class="divider"></div>
 
+<!-- LATEST -->
+<main class="latest">
     <h2>Latest Reviews</h2>
 
-    <div class="latest-grid">
+    <div class="video-grid">
 
-        {% assign sorted_posts = site.posts | sort: "date" | reverse %}
+        {% for post in site.posts limit:4 %}
 
-        {% for post in sorted_posts limit:4 %}
-
-        <div class="card">
+        <article class="video-card">
 
             {% if post.video %}
-            <div class="video">
-                <iframe src="{{ post.video }}" allowfullscreen></iframe>
-            </div>
+            <iframe src="{{ post.video }}" loading="lazy" allowfullscreen></iframe>
             {% endif %}
 
-            <h3>{{ post.title }}</h3>
+            <div class="info">
+                <h3>{{ post.title | default: "New Review" }}</h3>
+            </div>
 
-        </div>
+        </article>
 
         {% endfor %}
 
     </div>
-
-</section>
+</main>
 
 </body>
 </html>
