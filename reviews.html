@@ -99,10 +99,10 @@ html, body {
     border: 1px solid rgba(255,255,255,0.08);
 }
 
-/* ================= VIDEO (STRICT 16:9) ================= */
+/* ================= VIDEO ================= */
 .video-wrapper {
     width: 100%;
-    aspect-ratio: 16 / 9;   /* 🔥 ALWAYS 16:9 */
+    aspect-ratio: 16 / 9;
     border-radius: 16px;
     overflow: hidden;
     background: #111;
@@ -121,24 +121,22 @@ html, body {
     margin-bottom: 12px;
 }
 
-/* ================= DESCRIPTION COLLAPSE ================= */
+/* ================= DESCRIPTION ================= */
 .desc-text {
     color: #bbb;
     line-height: 1.8;
     font-size: 16px;
     display: -webkit-box;
-    -webkit-line-clamp: 6; /* collapsed lines */
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* expanded */
 .review-item.expanded .desc-text {
     -webkit-line-clamp: unset;
     display: block;
 }
 
-/* button */
 .read-more-btn {
     margin-top: 10px;
     background: transparent;
@@ -160,7 +158,7 @@ html, body {
     }
 
     .video-wrapper {
-        flex: 2.2; /* video dominant */
+        flex: 2.2;
     }
 
     .review-text {
@@ -177,7 +175,6 @@ html, body {
     .desc-text {
         font-size: 18px;
         line-height: 1.9;
-        -webkit-line-clamp: 7;
     }
 }
 
@@ -207,7 +204,9 @@ html, body {
 <main>
     <div class="content-width">
 
-        {% for post in site.posts %}
+        {% assign sorted_posts = site.posts | sort: "date" | reverse %}
+
+        {% for post in sorted_posts %}
         <article class="review-item">
 
             <!-- VIDEO -->
@@ -241,17 +240,14 @@ html, body {
     </div>
 </main>
 
-<!-- SCRIPT -->
 <script>
 function toggleDesc(btn) {
     const card = btn.closest(".review-item");
     card.classList.toggle("expanded");
 
-    if (card.classList.contains("expanded")) {
-        btn.innerText = "Show less";
-    } else {
-        btn.innerText = "Read more";
-    }
+    btn.innerText = card.classList.contains("expanded")
+        ? "Show less"
+        : "Read more";
 }
 </script>
 
