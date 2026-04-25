@@ -5,6 +5,34 @@
 <title>Reviews - CineeManch</title>
 
 <style>
+    /* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+}
+
+.logo { font-size: 24px; font-weight: bold; }
+.logo span { color: red; }
+.logo small { display: block; font-size: 12px; color: #ccc; }
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 14px;
+}
+.nav-links a:hover,
+.nav-links .active {
+    color: red;
+}
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -76,6 +104,22 @@ body {
 
 <body>
 
+    <!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">
+        Cinee<span>Manch</span>
+        <small>सिनेमंच</small>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="reviews.html" class="active">Reviews</a>
+        <a href="#">Recommended</a>
+        <a href="#">Box Office</a>
+        <a href="#">About</a>
+    </div>
+</div>
+    
 <!-- BANNER -->
 <div class="banner">
     <h1>Reviews</h1>
