@@ -90,7 +90,7 @@ html, body {
 .review-item {
     width: 100%;
     display: flex;
-    flex-direction: column; /* MOBILE DEFAULT */
+    flex-direction: column;
     gap: 20px;
     margin-bottom: 50px;
     background: #0a0a0a;
@@ -103,7 +103,7 @@ html, body {
 .video-wrapper {
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
 }
 
@@ -127,26 +127,27 @@ html, body {
 
 .review-text p {
     color: #bbb;
-    line-height: 1.7;
+    line-height: 1.8;
     font-size: 16px;
 }
 
-/* ================= DESKTOP LAYOUT (VIDEO LEFT, TEXT RIGHT) ================= */
+/* ================= DESKTOP LAYOUT ================= */
 @media (min-width: 1024px) {
 
     .review-item {
-        flex-direction: row;   /* 🔥 KEY CHANGE */
+        flex-direction: row;
         align-items: center;
-        gap: 30px;
+        gap: 35px;
         padding: 35px;
     }
 
     .video-wrapper {
-        flex: 1.2;  /* LEFT SIDE VIDEO */
+        flex: 1.6;      /* 🔥 BIGGER VIDEO */
+        min-width: 55%;
     }
 
     .review-text {
-        flex: 1;    /* RIGHT SIDE TEXT */
+        flex: 1;
     }
 
     .review-text h2 {
@@ -199,7 +200,9 @@ html, body {
 
             <div class="review-text">
                 <h2>{{ post.title }}</h2>
-                <p>{{ post.description | default: post.excerpt | strip_html | truncate: 350 }}</p>
+
+                <!-- FULL DESCRIPTION (NO TRUNCATION) -->
+                <p>{{ post.description | default: post.excerpt | strip_html }}</p>
             </div>
 
         </article>
