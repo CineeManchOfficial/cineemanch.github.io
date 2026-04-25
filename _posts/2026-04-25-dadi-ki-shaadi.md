@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Daadi Ki Shaadi Trailer Review"
-video: "https://www.youtube.com/embed/GB8ICqVQQMw"
+video_url: "https://www.youtube.com/embed/GB8ICqVQQMw"
 description: "Trailer breakdown and honest review of the film."
 date: 2026-04-25
 ---
