@@ -1,13 +1,71 @@
 ---
-layout: default
+layout: null
 ---
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews - CineeManch</title>
+
 <style>
-/* ================= PAGE RESET ================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* ================= GLOBAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: #000;
     color: #fff;
     font-family: Inter, sans-serif;
+    overflow-x: hidden;
+}
+
+/* ================= NAVBAR (EXACT SAME AS INDEX) ================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 14px 5%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+}
+.logo span { color: #ff2d2d; }
+.logo small { display: block; font-size: 11px; color: #aaa; }
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    justify-content: center;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* HAMBURGER */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    justify-self: end;
 }
 
 /* ================= BANNER ================= */
@@ -33,14 +91,14 @@ body {
     padding: 60px 6%;
 }
 
-/* ================= GRID ================= */
+/* GRID */
 .review-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 26px;
 }
 
-/* ================= CARD ================= */
+/* CARD */
 .review-link {
     text-decoration: none;
     color: inherit;
@@ -60,7 +118,7 @@ body {
     box-shadow: 0 12px 35px rgba(0,0,0,0.6);
 }
 
-/* ================= THUMBNAIL ================= */
+/* THUMBNAIL */
 .thumb {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -71,10 +129,9 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
-/* ================= TEXT ================= */
+/* TEXT */
 .review-text {
     padding: 14px;
 }
@@ -90,7 +147,7 @@ body {
     line-height: 1.5;
 }
 
-/* ================= RATING ================= */
+/* RATING */
 .rating {
     margin-top: 6px;
     font-size: 12px;
@@ -105,11 +162,53 @@ body {
 }
 
 @media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #000;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
     .review-grid {
         grid-template-columns: 1fr;
     }
 }
 </style>
+</head>
+
+<body>
+
+<!-- NAVBAR (IDENTICAL TO INDEX) -->
+<nav class="navbar">
+    <div class="logo">
+        Cinee<span>Manch</span>
+        <small>सिनेमंच</small>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="recommended-movie.html">Recommended Movie</a>
+        <a href="#">Box Office</a>
+        <a href="#">About Us</a>
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</nav>
 
 <!-- BANNER -->
 <header class="banner">
@@ -136,26 +235,17 @@ body {
 
             <div class="review-item">
 
-                <!-- THUMBNAIL -->
                 <div class="thumb">
-                    <img src="https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg" alt="{{ post.title }}">
+                    <img src="https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg">
                 </div>
 
-                <!-- TEXT -->
                 <div class="review-text">
-
                     <h2>{{ post.title }}</h2>
-
-                    <p>
-                        {{ post.description | strip_html | truncate: 120 }}
-                    </p>
+                    <p>{{ post.description | strip_html | truncate: 120 }}</p>
 
                     {% if post.rating %}
-                    <div class="rating">
-                        ⭐ {{ post.rating }}/10
-                    </div>
+                    <div class="rating">⭐ {{ post.rating }}/10</div>
                     {% endif %}
-
                 </div>
 
             </div>
@@ -168,3 +258,12 @@ body {
 
 </div>
 </main>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
