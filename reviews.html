@@ -3,14 +3,7 @@ layout: default
 ---
 
 <style>
-/* PAGE WRAPPER */
-.content-width {
-    max-width: 1200px;
-    margin: auto;
-    padding: 60px 20px;
-}
-
-/* BANNER */
+/* ================= BANNER ================= */
 .banner {
     width: 100%;
     height: 45vh;
@@ -27,26 +20,33 @@ layout: default
     color: #fff;
 }
 
-/* GRID */
+/* ================= WRAPPER ================= */
+.content-width {
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+/* ================= GRID ================= */
 .review-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 22px;
 }
 
-/* LINK */
+/* ================= CARD LINK ================= */
 .review-link {
     text-decoration: none;
     color: inherit;
 }
 
-/* CARD */
+/* ================= CARD ================= */
 .review-item {
     background: #0a0a0a;
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.08);
-    transition: 0.3s;
+    transition: 0.25s ease;
 }
 
 .review-item:hover {
@@ -55,22 +55,20 @@ layout: default
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-/* THUMBNAIL */
+/* ================= THUMB ================= */
 .thumb {
     width: 100%;
     aspect-ratio: 16 / 9;
     background: #111;
-    overflow: hidden;
 }
 
 .thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
-/* TEXT */
+/* ================= TEXT ================= */
 .review-text {
     padding: 14px;
 }
@@ -87,7 +85,7 @@ layout: default
     line-height: 1.5;
 }
 
-/* RATING */
+/* ================= RATING ================= */
 .rating {
     margin-top: 6px;
     font-size: 12px;
