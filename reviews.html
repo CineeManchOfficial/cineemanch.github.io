@@ -3,11 +3,67 @@ layout: default
 ---
 
 <style>
+/* RESET MATCH INDEX */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: Inter, sans-serif;
+}
+
+/* ================= NAVBAR (SAME AS INDEX) ================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 14px 5%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+}
+.logo span { color: #ff2d2d; }
+.logo small { font-size: 11px; color: #aaa; display: block; }
+
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    gap: 22px;
+    justify-content: center;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* MOBILE MENU */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    justify-self: end;
+}
+
 /* ================= BANNER ================= */
 .banner {
     width: 100%;
     height: 45vh;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)),
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
                 url("Banner 2.png") center/cover no-repeat;
     display: flex;
     align-items: center;
@@ -17,45 +73,43 @@ layout: default
 .banner h1 {
     font-size: clamp(36px, 8vw, 80px);
     letter-spacing: 4px;
-    color: #fff;
 }
 
-/* ================= WRAPPER ================= */
+/* ================= SECTION ================= */
 .content-width {
     max-width: 1200px;
     margin: auto;
-    padding: 60px 20px;
+    padding: 60px 6%;
 }
 
-/* ================= GRID ================= */
+/* GRID (MATCH STYLE) */
 .review-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
 }
 
-/* ================= CARD LINK ================= */
+/* CARD */
 .review-link {
     text-decoration: none;
     color: inherit;
 }
 
-/* ================= CARD ================= */
 .review-item {
-    background: #0a0a0a;
-    border-radius: 16px;
+    background: #0b0b0b;
+    border-radius: 14px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: 0.25s ease;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: 0.3s;
 }
 
 .review-item:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255,45,45,0.5);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    transform: translateY(-8px);
+    border-color: rgba(255,45,45,0.4);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.6);
 }
 
-/* ================= THUMB ================= */
+/* THUMBNAIL */
 .thumb {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -68,7 +122,7 @@ layout: default
     object-fit: cover;
 }
 
-/* ================= TEXT ================= */
+/* TEXT */
 .review-text {
     padding: 14px;
 }
@@ -76,7 +130,6 @@ layout: default
 .review-text h2 {
     font-size: 15px;
     margin-bottom: 6px;
-    color: #fff;
 }
 
 .review-text p {
@@ -85,13 +138,66 @@ layout: default
     line-height: 1.5;
 }
 
-/* ================= RATING ================= */
+/* RATING */
 .rating {
     margin-top: 6px;
     font-size: 12px;
     color: #ff2d2d;
 }
+
+/* ================= MOBILE ================= */
+@media (max-width: 1024px) {
+    .review-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #000;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 20px 0;
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
+
+<!-- NAV (MATCH INDEX) -->
+<nav class="navbar">
+    <div class="logo">
+        Cinee<span>Manch</span>
+        <small>सिनेमंच</small>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="recommended-movie.html">Recommended Movie</a>
+        <a href="#">Box Office</a>
+        <a href="#">About Us</a>
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</nav>
 
 <!-- BANNER -->
 <header class="banner">
@@ -118,26 +224,17 @@ layout: default
 
             <div class="review-item">
 
-                <!-- THUMBNAIL -->
                 <div class="thumb">
-                    <img src="https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg" alt="{{ post.title }}">
+                    <img src="https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg">
                 </div>
 
-                <!-- TEXT -->
                 <div class="review-text">
-
                     <h2>{{ post.title }}</h2>
-
-                    <p>
-                        {{ post.description | strip_html | truncate: 120 }}
-                    </p>
+                    <p>{{ post.description | strip_html | truncate: 120 }}</p>
 
                     {% if post.rating %}
-                    <div class="rating">
-                        ⭐ {{ post.rating }}/10
-                    </div>
+                    <div class="rating">⭐ {{ post.rating }}/10</div>
                     {% endif %}
-
                 </div>
 
             </div>
@@ -150,3 +247,10 @@ layout: default
 
 </div>
 </main>
+
+<!-- JS -->
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
