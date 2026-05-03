@@ -62,8 +62,13 @@ body {
 .banner {
     width: 100%;
     height: 60vh;
+
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.9)),
-                url("Banner 3.png") center/cover no-repeat;
+                url("Banner 3.png");
+
+    background-size: cover;
+    background-position: top center; /* 🔥 KEY FIX */
+    background-repeat: no-repeat;
 
     display: flex;
     align-items: center;
