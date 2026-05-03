@@ -2,29 +2,16 @@
 layout: default
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ page.title }}</title>
-
 <style>
-body {
-    margin: 0;
-    background: #000;
-    color: #fff;
-    font-family: Inter, sans-serif;
-}
-
-/* CONTAINER */
 .post-container {
     max-width: 900px;
     margin: auto;
     padding: 30px 20px;
+    font-family: Inter, sans-serif;
+    color: #fff;
 }
 
-/* BACK BUTTON */
+/* BACK */
 .back-btn {
     display: inline-block;
     margin-bottom: 20px;
@@ -33,10 +20,7 @@ body {
     font-weight: 600;
     opacity: 0.8;
 }
-
-.back-btn:hover {
-    opacity: 1;
-}
+.back-btn:hover { opacity: 1; }
 
 /* VIDEO */
 .video-wrapper {
@@ -77,14 +61,9 @@ h1 {
 
 /* MOBILE */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 22px;
-    }
+    h1 { font-size: 22px; }
 }
 </style>
-</head>
-
-<body>
 
 <div class="post-container">
 
@@ -107,6 +86,3 @@ h1 {
     </div>
 
 </div>
-
-</body>
-</html>
