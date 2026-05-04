@@ -21,7 +21,7 @@ layout: null
 body {
     background: #000;
     color: #fff;
-    font-family: Inter, sans-serif;
+    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
 
@@ -55,13 +55,14 @@ body {
     justify-content: center;
 }
 
-/* RED HOVER EFFECT */
+/* RED SLIDING HOVER EFFECT */
 .nav-links a {
     color: #ddd;
     text-decoration: none;
     font-size: 14px;
-    transition: 0.3s;
+    transition: 0.3s ease;
     position: relative;
+    padding: 4px 0;
 }
 
 .nav-links a:hover {
@@ -72,11 +73,11 @@ body {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -4px;
+    bottom: 0;
     width: 0%;
     height: 2px;
     background: #ff2d2d;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .nav-links a:hover::after {
@@ -230,7 +231,6 @@ body {
 
 <!-- CONTENT -->
 <div class="container">
-
     <div class="section">
         <h2>About CineeManch</h2>
         <p>
@@ -262,7 +262,7 @@ body {
     <div class="section">
         <h2>Join Our Journey</h2>
         <p>
-            If you live for cinema and love exploring the layers behind the lens, you belong here. 
+            If you love cinema and love exploring the layers behind the lens, you belong here. 
             Subscribe to our community and let’s keep the conversation going.
         </p>
 
@@ -272,10 +272,8 @@ body {
             </a>
         </div>
     </div>
-
 </div>
 
-<!-- SCRIPT -->
 <script>
 function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("active");
