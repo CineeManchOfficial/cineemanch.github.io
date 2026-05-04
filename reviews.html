@@ -1,7 +1,6 @@
 ---
 layout: null
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +25,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ================= NAVBAR (EXACT SAME AS INDEX) ================= */
+/* ================= NAVBAR (CONSISTENT WITH INDEX) ================= */
 .navbar {
     position: sticky;
     top: 0;
@@ -44,6 +43,8 @@ body {
 .logo {
     font-size: 22px;
     font-weight: 700;
+    text-decoration: none;
+    color: #fff;
 }
 .logo span { color: #ff2d2d; }
 .logo small { display: block; font-size: 11px; color: #aaa; }
@@ -54,10 +55,32 @@ body {
     justify-content: center;
 }
 
+/* RED HOVER EFFECT */
 .nav-links a {
     color: #ddd;
     text-decoration: none;
     font-size: 14px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #ff2d2d;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #ff2d2d;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* HAMBURGER */
@@ -154,7 +177,7 @@ body {
     color: #ff2d2d;
 }
 
-/* ================= MOBILE ================= */
+/* ================= RESPONSIVE LAYOUT ================= */
 @media (max-width: 1024px) {
     .review-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -162,7 +185,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
     .menu-toggle {
         display: block;
     }
@@ -177,6 +199,7 @@ body {
         align-items: center;
         padding: 20px 0;
         display: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .nav-links.active {
@@ -192,18 +215,18 @@ body {
 
 <body>
 
-<!-- NAVBAR (IDENTICAL TO INDEX) -->
+<!-- NAVBAR -->
 <nav class="navbar">
-    <div class="logo">
+    <a href="index.html" class="logo">
         Cinee<span>Manch</span>
         <small>सिनेमंच</small>
-    </div>
+    </a>
 
     <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="reviews.html">Reviews</a>
         <a href="recommended-movie.html">Recommended Movie</a>
-        <a href="#">Box Office</a> <!-- IT IS HERE -->
+        <a href="#">Box Office</a>
         <a href="about-us.html">About Us</a>
     </div>
 
@@ -215,47 +238,38 @@ body {
     <h1>Movie Reviews</h1>
 </header>
 
-<!-- REVIEWS -->
+<!-- REVIEWS CONTENT -->
 <main>
 <div class="content-width">
 
     {% assign sorted_posts = site.posts | sort: "date" | reverse %}
 
     <div class="review-grid">
-
         {% for post in sorted_posts %}
+            {% assign video_id = post.video
+                | replace: "https://www.youtube.com/embed/", ""
+                | replace: "https://youtu.be/", ""
+                | split: "?"
+                | first %}
 
-        {% assign video_id = post.video
-            | replace: "https://www.youtube.com/embed/", ""
-            | replace: "https://youtu.be/", ""
-            | split: "?"
-            | first %}
+            <a href="{{ post.url }}" class="review-link">
+                <div class="review-item">
+                    <div class="thumb">
+                        <img src="https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg" loading="lazy">
+                    </div>
 
-        <a href="{{ post.url }}" class="review-link">
+                    <div class="review-text">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.description | strip_html | truncate: 120 }}</p>
 
-            <div class="review-item">
-
-                <div class="thumb">
-                    <img src="https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg">
+                        {% if post.rating %}
+                        <div class="rating">⭐ {{ post.rating }}/10</div>
+                        {% endif %}
+                    </div>
                 </div>
-
-                <div class="review-text">
-                    <h2>{{ post.title }}</h2>
-                    <p>{{ post.description | strip_html | truncate: 120 }}</p>
-
-                    {% if post.rating %}
-                    <div class="rating">⭐ {{ post.rating }}/10</div>
-                    {% endif %}
-                </div>
-
-            </div>
-
-        </a>
-
+            </a>
         {% endfor %}
-
     </div>
-
 </div>
 </main>
 
