@@ -1,7 +1,6 @@
 ---
 layout: null
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +25,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ================= NAVBAR (MATCH INDEX STYLE) ================= */
+/* ================= NAVBAR (MATCHED TO INDEX) ================= */
 .navbar {
     position: sticky;
     top: 0;
@@ -44,17 +43,12 @@ body {
 .logo {
     font-size: 22px;
     font-weight: 700;
+    text-decoration: none;
+    color: #fff;
 }
-
 .logo span { color: #ff2d2d; }
+.logo small { display: block; font-size: 11px; color: #aaa; }
 
-.logo small {
-    display: block;
-    font-size: 11px;
-    color: #aaa;
-}
-
-/* NAV LINKS (HOVER ADDED LIKE INDEX) */
 .nav-links {
     display: flex;
     gap: 22px;
@@ -69,10 +63,7 @@ body {
     position: relative;
 }
 
-/* 🔥 HOVER EFFECT LIKE INDEX */
-.nav-links a:hover {
-    color: #ff2d2d;
-}
+.nav-links a:hover { color: #ff2d2d; }
 
 .nav-links a::after {
     content: "";
@@ -85,54 +76,54 @@ body {
     transition: 0.3s;
 }
 
-.nav-links a:hover::after {
-    width: 100%;
+.nav-links a:hover::after { width: 100%; }
+
+/* HAMBURGER */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    justify-self: end;
+    text-align: right;
 }
 
-/* ================= HERO BANNER (FULL RESPONSIVE FIXED) ================= */
+/* ================= HERO BANNER ================= */
 .banner {
     width: 100%;
-    min-height: 60vh;
-    height: clamp(300px, 60vh, 700px);
-
+    min-height: 45vh;
+    height: clamp(300px, 50vh, 600px);
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.95)),
                 url("Banner 3.png") center/cover no-repeat;
-
     display: flex;
     align-items: flex-end;
     justify-content: center;
-
-    padding-bottom: 40px;
 }
 
 /* ================= CONTENT ================= */
 .content-width {
     max-width: 1200px;
-    margin: -60px auto 0;
-    padding: 40px 20px 80px;
+    margin: -40px auto 0;
+    padding: 0 20px 80px;
 }
 
-/* CARD */
 .review-item {
     display: flex;
     flex-direction: column;
     gap: 18px;
-    margin-bottom: 50px;
-    background: #0a0a0a;
+    margin-bottom: 40px;
+    background: #0b0b0b;
     padding: 22px;
     border-radius: 16px;
     border: 1px solid rgba(255,255,255,0.06);
     transition: 0.3s;
 }
 
-/* HOVER LIKE INDEX CARDS */
 .review-item:hover {
     transform: translateY(-8px);
-    border-color: rgba(255,45,45,0.5);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    border-color: rgba(255,45,45,0.4);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.6);
 }
 
-/* VIDEO */
 .video-wrapper {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -146,118 +137,112 @@ body {
     border: none;
 }
 
-/* TEXT */
 .review-text h2 {
-    color: #ff2d2d;
-    font-size: 18px;
-    margin-bottom: 6px;
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 8px;
 }
 
 .rating {
     color: #ff2d2d;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
 }
 
 .desc-text {
     color: #bbb;
     line-height: 1.6;
-    font-size: 14px;
+    font-size: 15px;
 }
 
-/* ================= DESKTOP ================= */
+/* ================= RESPONSIVE ================= */
 @media (min-width: 1024px) {
-
     .review-item {
         flex-direction: row;
         gap: 35px;
         align-items: center;
     }
-
-    .video-wrapper {
-        flex: 2;
-    }
-
-    .review-text {
-        flex: 1;
-    }
+    .video-wrapper { flex: 1.5; }
+    .review-text { flex: 1; }
 }
 
-/* ================= MOBILE FIX ================= */
 @media (max-width: 768px) {
+    .menu-toggle { display: block; }
 
     .nav-links {
-        font-size: 13px;
-        gap: 14px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #0a0a0a;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 30px 0;
+        display: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    .banner {
-        min-height: 45vh;
-        background-position: center;
-    }
+    .nav-links.active { display: flex; }
+
+    .content-width { margin-top: 20px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
-
-    <div class="logo">
+    <a href="index.html" class="logo" style="text-decoration: none;">
         Cinee<span>Manch</span>
         <small>सिनेमंच</small>
-    </div>
+    </a>
 
-    <div class="nav-links">
-        <a href="/index.html">Home</a>
-        <a href="/reviews.html">Reviews</a>
-        <a href="/recommended-movie.html">Recommended Movie</a>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="recommended-movie.html">Recommended Movie</a>
         <a href="#">Box Office</a>
-        <a href="/about-us.html">About Us</a>
+        <a href="about-us.html">About Us</a>
     </div>
 
-    <div></div>
-
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </nav>
 
-<!-- BANNER -->
 <header class="banner"></header>
 
-<!-- CONTENT -->
 <main>
 <div class="content-width">
 
 {% assign sorted_posts = site.posts | sort: "date" | reverse %}
-
 {% for post in sorted_posts %}
-{% assign rating_value = post.rating | plus: 0 %}
+    {% assign rating_value = post.rating | plus: 0 %}
+    {% if rating_value >= 8 %}
+    <article class="review-item">
+        <div class="video-wrapper">
+            {% if post.video %}
+            <iframe src="{{ post.video }}" loading="lazy" allowfullscreen></iframe>
+            {% endif %}
+        </div>
 
-{% if rating_value >= 8 %}
-
-<article class="review-item">
-
-    <div class="video-wrapper">
-        {% if post.video %}
-        <iframe src="{{ post.video }}" allowfullscreen></iframe>
-        {% endif %}
-    </div>
-
-    <div class="review-text">
-        <h2>{{ post.title }}</h2>
-        <div class="rating">⭐ {{ rating_value }}/10</div>
-        <p class="desc-text">
-            {{ post.description | strip_html }}
-        </p>
-    </div>
-
-</article>
-
-{% endif %}
+        <div class="review-text">
+            <h2>{{ post.title }}</h2>
+            <div class="rating">⭐ {{ rating_value }}/10</div>
+            <p class="desc-text">{{ post.description | strip_html | truncatewords: 50 }}</p>
+        </div>
+    </article>
+    {% endif %}
 {% endfor %}
 
 </div>
 </main>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
