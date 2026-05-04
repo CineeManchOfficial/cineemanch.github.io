@@ -34,7 +34,7 @@ html, body {
     width: 100%;
     padding: 14px 5%;
     display: grid;
-    grid-template-columns: auto 1fr auto; /* FIXED */
+    grid-template-columns: auto 1fr auto; 
     align-items: center;
     background: rgba(10,10,10,0.95);
     backdrop-filter: blur(14px);
@@ -45,11 +45,13 @@ html, body {
 .logo {
     font-size: 22px;
     font-weight: 700;
+    text-decoration: none;
+    color: #fff;
 }
 .logo span { color: #ff2d2d; }
 .logo small { display: block; font-size: 11px; color: #aaa; }
 
-/* NAV LINKS */
+/* NAV LINKS WITH RED HOVER EFFECT */
 .nav-links {
     display: flex;
     gap: 22px;
@@ -60,9 +62,31 @@ html, body {
     color: #ddd;
     text-decoration: none;
     font-size: 14px;
+    transition: 0.3s;
+    position: relative; /* Required for the underline */
 }
 
-/* HAMBURGER (RIGHT SIDE) */
+/* THE HOVER COLOR & SLIDING LINE */
+.nav-links a:hover {
+    color: #ff2d2d;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #ff2d2d;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* HAMBURGER */
 .menu-toggle {
     display: none;
     font-size: 24px;
@@ -107,6 +131,7 @@ html, body {
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
+    transition: 0.3s;
 }
 
 /* DIVIDER */
@@ -172,7 +197,6 @@ html, body {
 }
 
 @media (max-width: 768px) {
-
     .menu-toggle {
         display: block;
     }
@@ -188,6 +212,7 @@ html, body {
         gap: 18px;
         padding: 20px 0;
         display: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .nav-links.active {
@@ -210,16 +235,15 @@ html, body {
 
 <!-- NAV -->
 <nav class="navbar">
-    <div class="logo">
+    <a href="index.html" class="logo" style="text-decoration: none;">
         Cinee<span>Manch</span>
         <small>सिनेमंच</small>
-    </div>
+    </a>
 
     <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="reviews.html">Reviews</a>
         <a href="recommended-movie.html">Recommended Movie</a>
-        <a href="#">Box Office</a>
         <a href="about-us.html">About Us</a>
     </div>
 
