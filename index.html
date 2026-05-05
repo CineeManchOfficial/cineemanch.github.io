@@ -233,7 +233,6 @@ html, body {
 
 <body>
 
-<!-- NAV -->
 <nav class="navbar">
     <a href="index.html" class="logo" style="text-decoration: none;">
         Cinee<span>Manch</span>
@@ -251,7 +250,6 @@ html, body {
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
     <div class="hero-content">
         <h1>Cinee<span>Manch</span></h1>
@@ -266,7 +264,6 @@ html, body {
 
 <div class="divider"></div>
 
-<!-- LATEST -->
 <main class="latest">
     <h2>Latest Reviews</h2>
 
@@ -274,7 +271,12 @@ html, body {
         {% for post in site.posts limit:4 %}
         <article class="video-card">
             {% if post.video %}
-            <iframe src="{{ post.video }}" loading="lazy" allowfullscreen></iframe>
+                {% if post.video contains '?' %}
+                    {% assign video_src = post.video | append: '&rel=0&modestbranding=1' %}
+                {% else %}
+                    {% assign video_src = post.video | append: '?rel=0&modestbranding=1' %}
+                {% endif %}
+                <iframe src="{{ video_src }}" loading="lazy" allowfullscreen></iframe>
             {% endif %}
             <div class="info">
                 <h3>{{ post.title | default: "New Review" }}</h3>
@@ -284,7 +286,6 @@ html, body {
     </div>
 </main>
 
-<!-- JS -->
 <script>
 function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("active");
