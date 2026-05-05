@@ -15,10 +15,6 @@ Agar aapne No Entry ya Kis Kisko Pyaar Karoon dekhi hai, toh yeh setup kaafi fam
 Director Mudassar Aziz ne ‘double woh’ concept ke saath kuch naya karne ki koshish zaroor ki hai, lekin trailer mein woh nayi baat strongly feel nahi hoti.
 
 Final verdict simple hai — intent entertaining hai, cast strong hai, lekin agar script tight nahi hui, toh yeh film sirf ek aur timepass comedy ban sakti hai.
-
-👉 Expectation: Mid 😶  
-👉 Hope: Ayushmann saves the film 🔥  
-
 Aapko trailer kaisa laga? Kya yeh Badaa कांड hone wala hai ya phir same story repeat? Comment karke zaroor batayein 👇"
 date: 2026-05-05
 rating: 
