@@ -13,7 +13,6 @@ Unke opposite Wamiqa Gabbi as biwi aur Sara Ali Khan as ‘woh’ dikhayi deti h
 Agar aapne No Entry ya Kis Kisko Pyaar Karoon dekhi hai, toh yeh setup kaafi familiar lagega — biwi strict, girlfriend fun, aur beech mein phasa hua husband. Problem yeh nahi ki formula repeat ho raha hai… problem yeh hai ki freshness missing lag rahi hai.
 
 Director Mudassar Aziz ne ‘double woh’ concept ke saath kuch naya karne ki koshish zaroor ki hai, lekin trailer mein woh nayi baat strongly feel nahi hoti.
-
 Final verdict simple hai — intent entertaining hai, cast strong hai, lekin agar script tight nahi hui, toh yeh film sirf ek aur timepass comedy ban sakti hai.
 Aapko trailer kaisa laga? Kya yeh Badaa कांड hone wala hai ya phir same story repeat? Comment karke zaroor batayein 👇"
 date: 2026-05-05
